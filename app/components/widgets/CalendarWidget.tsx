@@ -30,8 +30,9 @@ export default function CalendarWidget() {
       dragListener={false}
       dragMomentum={false}
       dragElastic={0}
+      id="calendar-widget"
       className="absolute select-none"
-      style={{ top: 228, right: 24, zIndex: 5, width: 200 }}
+      style={{ top: 48, right: 12, zIndex: 2, width: 200 }}
     >
       <div className="widget-handle" onPointerDown={(e) => dragControls.start(e)}>
         <div style={{ width: 24, height: 2, borderRadius: 1, background: "rgba(255,255,255,0.12)" }} />

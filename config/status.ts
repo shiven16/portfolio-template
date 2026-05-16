@@ -25,8 +25,7 @@ export const status: StatusConfig = {
   available: true,
   label: "Open to work",
   currently: [
-    { label: "Building", value: "Something you're excited about" },
-    { label: "Reading",  value: "A book that's changed how you think" },
-    { label: "Writing",  value: "Your next blog post" },
+    { label: "Building", value: "NodeWatch: Decentralized uptime verification powered by distributed validators" },
+    { label: "Exploring", value: "Distributed systems, Rust, and decentralized infrastructure through blockchain and Solana development." },
   ],
 }

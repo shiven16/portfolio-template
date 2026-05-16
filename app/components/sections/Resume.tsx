@@ -1,12 +1,12 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { ExternalLink, MapPin, Mail, Github, Twitter } from "lucide-react"
+import { ExternalLink, Mail, Github, Linkedin } from "lucide-react"
 // Résumé content is split across a few config modules — each maps 1:1 to a section below.
 import { siteConfig } from "@/config/siteConfig"
 import { skills } from "@/config/skills"
-import { resumeExperience as experience, education, teaching } from "@/config/experience"
-import { resumeProjects as projects } from "@/config/projects"
+import { resumeExperience as experience, education } from "@/config/experience"
+import { projects } from "@/config/projects"
 
 export default function Resume({ compact = false }: { compact?: boolean }) {
   const { personal, social, contact, resumeLink } = siteConfig
@@ -21,13 +21,7 @@ export default function Resume({ compact = false }: { compact?: boolean }) {
       <div className="flex items-start justify-between mb-5">
         <div>
           <h1 className="text-[22px] font-semibold text-white leading-tight">{personal.fullName}</h1>
-          <p className="text-[13px] text-[var(--text-secondary)] mt-0.5">
-            {personal.shortRole}
-          </p>
           <div className="flex items-center gap-3 mt-2 flex-wrap">
-            <span className="flex items-center gap-1 text-[11px] text-[var(--text-muted)]">
-              <MapPin size={10} /> {personal.location}
-            </span>
             <a
               href={`mailto:${contact.email}`}
               className="flex items-center gap-1 text-[11px] text-[var(--text-muted)] hover:text-white transition-colors"
@@ -48,7 +42,7 @@ export default function Resume({ compact = false }: { compact?: boolean }) {
               rel="noopener noreferrer"
               className="flex items-center gap-1 text-[11px] text-[var(--text-muted)] hover:text-white transition-colors"
             >
-              <Twitter size={10} /> {social.twitterHandle}
+              <Linkedin size={10} /> {social.twitterHandle}
             </a>
           </div>
         </div>
@@ -65,7 +59,7 @@ export default function Resume({ compact = false }: { compact?: boolean }) {
           }}
         >
           <ExternalLink size={11} />
-          View on Notion
+          View Pdf
         </a>
       </div>
 
@@ -110,15 +104,78 @@ export default function Resume({ compact = false }: { compact?: boolean }) {
         <div style={{ height: "1px", background: "var(--separator)" }} />
 
         {/* Experience */}
+        {experience && experience.length > 0 && (
+          <>
+            <section>
+              <h2
+                className="text-[11px] font-semibold uppercase tracking-widest mb-4"
+                style={{ color: "var(--text-secondary)" }}
+              >
+                Experience
+              </h2>
+              <div className="space-y-4">
+                {experience.map((job, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: -8 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.05 }}
+                  >
+                    <div className="flex items-start justify-between gap-2 mb-1">
+                      <div>
+                        <div className="flex items-baseline gap-2">
+                          <span className="text-[13px] font-semibold text-white">{job.company}</span>
+                          <span className="text-[11px]" style={{ color: "var(--text-secondary)" }}>
+                            {job.role}
+                          </span>
+                        </div>
+                        {job.subRoles && (
+                          <p className="text-[10px] mt-0.5" style={{ color: "var(--text-muted)" }}>
+                            via {job.subRoles.join(" · ")}
+                          </p>
+                        )}
+                      </div>
+                      <span
+                        className="text-[10px] flex-none mt-0.5"
+                        style={{ color: "var(--text-muted)" }}
+                      >
+                        {job.period}
+                      </span>
+                    </div>
+                    <ul className="space-y-1 pl-3">
+                      {job.bullets.map((b, j) => (
+                        <li key={j} className="flex items-start gap-2">
+                          <span
+                            className="mt-[6px] w-1 h-1 rounded-full flex-none"
+                            style={{ background: "var(--text-faint)" }}
+                          />
+                          <span
+                            className="text-[11px] leading-relaxed"
+                            style={{ color: "var(--text-secondary)" }}
+                          >
+                            {b}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                ))}
+              </div>
+            </section>
+            <div style={{ height: "1px", background: "var(--separator)" }} />
+          </>
+        )}
+
+        {/* Projects */}
         <section>
           <h2
             className="text-[11px] font-semibold uppercase tracking-widest mb-4"
             style={{ color: "var(--text-secondary)" }}
           >
-            Experience
+            Projects
           </h2>
           <div className="space-y-4">
-            {experience.map((job, i) => (
+            {projects.map((p, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, x: -8 }}
@@ -126,99 +183,51 @@ export default function Resume({ compact = false }: { compact?: boolean }) {
                 transition={{ delay: i * 0.05 }}
               >
                 <div className="flex items-start justify-between gap-2 mb-1">
-                  <div>
-                    <div className="flex items-baseline gap-2">
-                      <span className="text-[13px] font-semibold text-white">{job.company}</span>
-                      <span className="text-[11px]" style={{ color: "var(--text-secondary)" }}>
-                        {job.role}
-                      </span>
-                    </div>
-                    {job.subRoles && (
-                      <p className="text-[10px] mt-0.5" style={{ color: "var(--text-muted)" }}>
-                        via {job.subRoles.join(" · ")}
-                      </p>
-                    )}
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-[13px] font-semibold text-white">{p.name}</span>
                   </div>
-                  <span
-                    className="text-[10px] flex-none mt-0.5"
-                    style={{ color: "var(--text-muted)" }}
-                  >
-                    {job.period}
-                  </span>
+                  {(p.github || p.live) && (
+                    <div className="flex items-center gap-3 mt-0.5">
+                      {p.github && (
+                        <a href={p.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-[10px] text-[var(--text-muted)] hover:text-white transition-colors">
+                          <Github size={10} /> GitHub
+                        </a>
+                      )}
+                      {p.live && (
+                        <a href={p.live} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-[10px] text-[var(--text-muted)] hover:text-white transition-colors">
+                          <ExternalLink size={10} /> Live
+                        </a>
+                      )}
+                    </div>
+                  )}
                 </div>
-                <ul className="space-y-1 pl-3">
-                  {job.bullets.map((b, j) => (
-                    <li key={j} className="flex items-start gap-2">
-                      <span
-                        className="mt-[6px] w-1 h-1 rounded-full flex-none"
-                        style={{ background: "var(--text-faint)" }}
-                      />
-                      <span
-                        className="text-[11px] leading-relaxed"
-                        style={{ color: "var(--text-secondary)" }}
-                      >
-                        {b}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
+                <p className="text-[11px] mb-2" style={{ color: "var(--text-secondary)" }}>
+                  {p.desc}
+                </p>
+                {p.achievements && p.achievements.length > 0 && (
+                  <ul className="space-y-1 pl-3">
+                    {p.achievements.map((a, j) => (
+                      <li key={j} className="flex items-start gap-2">
+                        <span
+                          className="mt-[6px] w-1 h-1 rounded-full flex-none"
+                          style={{ background: "var(--text-faint)" }}
+                        />
+                        <span
+                          className="text-[11px] leading-relaxed"
+                          style={{ color: "var(--text-secondary)" }}
+                        >
+                          {a}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </motion.div>
             ))}
           </div>
         </section>
 
-        <div style={{ height: "1px", background: "var(--separator)" }} />
 
-        {/* Projects */}
-        <section>
-          <h2
-            className="text-[11px] font-semibold uppercase tracking-widest mb-3"
-            style={{ color: "var(--text-secondary)" }}
-          >
-            Selected Projects
-          </h2>
-          <div className="space-y-2">
-            {projects.map((p, i) => (
-              <div key={i} className="flex gap-3">
-                <span
-                  className="text-[11px] font-medium w-40 flex-none pt-px text-white/70"
-                >
-                  {p.name}
-                </span>
-                <span className="text-[11px] leading-relaxed" style={{ color: "var(--text-secondary)" }}>
-                  {p.desc}
-                </span>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <div style={{ height: "1px", background: "var(--separator)" }} />
-
-        {/* Teaching */}
-        <section>
-          <h2
-            className="text-[11px] font-semibold uppercase tracking-widest mb-3"
-            style={{ color: "var(--text-secondary)" }}
-          >
-            Teaching
-          </h2>
-          <ul className="space-y-1 pl-3">
-            {teaching.map((t, i) => (
-              <li key={i} className="flex items-start gap-2">
-                <span
-                  className="mt-[6px] w-1 h-1 rounded-full flex-none"
-                  style={{ background: "var(--text-faint)" }}
-                />
-                <span className="text-[11px] leading-relaxed" style={{ color: "var(--text-secondary)" }}>
-                  {t}
-                </span>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <div style={{ height: "1px", background: "var(--separator)" }} />
 
         {/* Education */}
         <section>

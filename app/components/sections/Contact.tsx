@@ -1,16 +1,16 @@
 "use client"
-
+import type { ReactNode } from "react"
 import { motion } from "framer-motion"
-import { Twitter, Mail, Github, Calendar } from "lucide-react"
+import { Linkedin, Mail, Github, Calendar } from "lucide-react"
 // Contact rows + headings come from /config/siteConfig.ts → contact.
 import { siteConfig, type ContactRow } from "@/config/siteConfig"
 
 const ICONS = {
   mail:     <Mail size={15} />,
   calendar: <Calendar size={15} />,
-  twitter:  <Twitter size={15} />,
+  linkedin:  <Linkedin size={15} />,
   github:   <Github size={15} />,
-} as const
+} as Record<string, ReactNode>
 
 export default function Contact({ compact = false }: { compact?: boolean }) {
   const { contact } = siteConfig

@@ -44,7 +44,7 @@ export interface Social {
 }
 
 export interface ContactRow {
-  icon: "mail" | "calendar" | "twitter" | "github"
+  icon: "mail" | "calendar" | "linkedin" | "github"
   href: string
   label: string
   /** Short monospaced value shown on the right of each row. */
@@ -83,47 +83,46 @@ export interface SiteConfig {
 
 export const siteConfig: SiteConfig = {
   personal: {
-    firstName: "Jane",
-    lastName: "Developer",
-    fullName: "Jane Developer",
-    initials: "JD",
-    role: "Software Engineer",
-    shortRole: "Full-Stack Software Engineer",
+    firstName: "Shiven",
+    lastName: "Ahuja",
+    fullName: "Shiven Ahuja",
+    initials: "SA",
+    role: "",
+    shortRole: "",
     tagline:
-      "A short, opinionated sentence about what you build and why it matters. Keep it two sentences at most — this is the first thing visitors read.",
-    location: "Earth",
+      "Passionate about software engineering, system design, and emerging technologies, with a strong interest in building scalable applications, developer-focused tools, and efficient digital experiences through thoughtful architecture and problem-solving.",
+    location: "",
     age: 20,
     avatar: "/avatar.svg",
-    username: "janedeveloper",
+    username: "shiven16",
   },
 
   social: {
-    github: "https://github.com/janedeveloper",
-    twitter: "https://x.com/janedeveloper",
-    blog: "https://example.com/blog",
-    githubUsername: "janedeveloper",
-    twitterHandle: "janedeveloper",
+    github: "https://github.com/shiven16",
+    twitter: "https://www.linkedin.com/in/shiven-ahuja-13238427b/",
+    blog: "",
+    githubUsername: "shiven16",
+    twitterHandle: "shivenahuja",
   },
 
   contact: {
-    email: "hello@example.com",
-    calendar: "https://cal.com/janedeveloper",
+    email: "shivenahuja2004@gmail.com",
+    calendar: "https://cal.com/shiven16",
     heading: "Let's Connect",
     subheading: "Open to collaborations, freelance work, or just a conversation.",
     rows: [
-      { icon: "mail",     href: "mailto:hello@example.com",             label: "Email",           mono: "hello@example.com" },
-      { icon: "calendar", href: "https://cal.com/janedeveloper",         label: "Schedule a call", mono: "cal.com/janedeveloper" },
-      { icon: "twitter",  href: "https://x.com/janedeveloper",           label: "X / Twitter",     mono: "@janedeveloper" },
-      { icon: "github",   href: "https://github.com/janedeveloper",      label: "GitHub",          mono: "janedeveloper" },
+      { icon: "mail", href: "mailto:shivenahuja2004@gmail.com", label: "Email", mono: "shivenahuja2004@gmail.com" },
+      { icon: "linkedin", href: "https://www.linkedin.com/in/shiven-ahuja-13238427b/", label: "LinkedIn", mono: "shivenahuja" },
+      { icon: "github", href: "https://github.com/shiven16", label: "GitHub", mono: "shiven16" },
     ],
   },
 
   seo: {
-    title: "Jane Developer — Portfolio",
-    description: "Personal portfolio and writing by Jane Developer.",
+    title: "Shiven Ahuja — Portfolio",
+    description: "Personal portfolio and writing by Shiven Ahuja.",
   },
 
-  resumeLink: "https://example.com/resume",
+  resumeLink: "https://drive.google.com/file/d/1MI0kiS5V8Li505cIiQ33Sp3gMEgfv8d9/view?usp=sharing",
 
   features: {
     konami: false,

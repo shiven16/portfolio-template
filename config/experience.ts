@@ -28,39 +28,17 @@ export interface ExperienceItem {
 
 export const experience: ExperienceItem[] = [
   {
-    company: "Acme Corp",
-    role: "Senior Software Engineer",
-    period: "Jan 2024 – Present",
-    description: "Short one-line summary of what you do here.",
-    tech: ["TypeScript", "React", "Node.js", "PostgreSQL"],
+    company: "Allen Digital",
+    role: "SDET Intern",
+    period: "Jan 2025 – Jul 2025",
+    description: "Built UI/API automation frameworks, productionized AI-driven test analysis, and managed on-call infrastructure.",
+    tech: ["Playwright", "TypeScript", "Python", "AWS", "MongoDB", "SQL"],
     achievements: [
-      "Led the migration of a critical service from X to Y with zero downtime.",
-      "Mentored three junior engineers through design reviews and pairing.",
-      "Shipped a feature that drove a measurable 12% improvement in activation.",
-    ],
-  },
-  {
-    company: "Globex",
-    role: "Software Engineer",
-    period: "Jun 2022 – Dec 2023",
-    description: "What you built here, in a sentence.",
-    tech: ["Go", "Kubernetes", "Redis"],
-    achievements: [
-      "Built and owned the internal deploy pipeline used by 40+ engineers.",
-      "Reduced p99 latency of the core API from 800ms to 110ms.",
-    ],
-    links: [
-      { type: "website", url: "https://example.com", label: "example.com" },
-    ],
-  },
-  {
-    company: "Initech",
-    role: "Software Engineering Intern",
-    period: "Summer 2021",
-    description: "Your internship — one line.",
-    tech: ["Python", "AWS"],
-    achievements: [
-      "Wrote an internal data pipeline tool still in use today.",
+      "Built and scaled UI and API automation frameworks using Playwright, TypeScript, and YAML, increasing test coverage and reducing flaky test failures by 30-35%.",
+      "Productionized an AI-driven test failure analysis system by deploying an AWS Lambda + SQS pipeline to process test reports and store structured logs in MongoDB, reducing debugging time by 50% and enabling faster root cause analysis.",
+      "Automated test data setup and database workflows using SQL and Python scripts, eliminating manual effort and ensuring consistent test environments.",
+      "Owned on-call test infrastructure, analyzed failures, and managed issues via JIRA, accelerating bug triaging and improving coordination between QA and development teams.",
+      "Contributed 8-10 PRs per week, fixing automation issues and improving overall code quality and test stability.",
     ],
   },
 ]
@@ -78,22 +56,15 @@ export interface ResumeExperienceItem {
 
 export const resumeExperience: ResumeExperienceItem[] = [
   {
-    company: "Acme Corp",
-    role: "Senior Software Engineer",
-    period: "Jan 2024 – Present",
+    company: "Allen Digital",
+    role: "SDET Intern",
+    period: "Jan 2025 – Jul 2025",
     bullets: [
-      "Led the migration of a critical service from X to Y with zero downtime.",
-      "Mentored three junior engineers through design reviews and pairing.",
-      "Shipped a feature that drove a measurable 12% improvement in activation.",
-    ],
-  },
-  {
-    company: "Globex",
-    role: "Software Engineer",
-    period: "Jun 2022 – Dec 2023",
-    bullets: [
-      "Built and owned the internal deploy pipeline used by 40+ engineers.",
-      "Reduced p99 latency of the core API from 800ms to 110ms.",
+      "Built and scaled UI and API automation frameworks using Playwright, TypeScript, and YAML, increasing test coverage and reducing flaky test failures by 30-35%.",
+      "Productionized an AI-driven test failure analysis system by deploying an AWS Lambda + SQS pipeline to process test reports and store structured logs in MongoDB, reducing debugging time by 50% and enabling faster root cause analysis.",
+      "Automated test data setup and database workflows using SQL and Python scripts, eliminating manual effort and ensuring consistent test environments.",
+      "Owned on-call test infrastructure, analyzed failures, and managed issues via JIRA, accelerating bug triaging and improving coordination between QA and development teams.",
+      "Contributed 8-10 PRs per week, fixing automation issues and improving overall code quality and test stability.",
     ],
   },
 ]
@@ -107,12 +78,9 @@ export interface EducationItem {
 }
 
 export const education: EducationItem = {
-  school: "State University",
-  degree: "B.Sc. — Computer Science",
-  period: "2018 – 2022",
+  school: "Newton School of Technology, Rishihood University",
+  degree: "B.Tech. — Computer Science (CGPA: 8.07)",
+  period: "2023 – 2027",
 }
 
-export const teaching: string[] = [
-  "Ran a weekend study group on data structures for ~15 local students.",
-  "Guest-lectured an intro-to-web-dev class at my alma mater.",
-]
+export const teaching: string[] = []

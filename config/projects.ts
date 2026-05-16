@@ -1,77 +1,44 @@
 /**
  * projects.ts
  * ─────────────────────────────────────────────────────────────
- * All projects shown in the Projects window.
- * Split into two lists: `personal` (side projects) and `client`
- * (paid / contracted work). Both use the same ProjectItem shape.
- *
- *  - `tech`   → array of tags rendered beneath the description.
- *  - `stars`  → optional — shown next to the title if present.
- *  - `status` → optional — rendered as a pill (e.g. "Paused").
+ * All projects shown in the Projects and Resume windows.
  * ─────────────────────────────────────────────────────────────
  */
 
 export interface ProjectItem {
-  title: string
-  description: string
-  tech: string[]
-  status?: string
-  stars?: number
-  link: string
-}
-
-export interface ProjectsConfig {
-  personal: ProjectItem[]
-  client: ProjectItem[]
-}
-
-export const projects: ProjectsConfig = {
-  personal: [
-    {
-      title: "Example Project",
-      description: "One-sentence description of what you built and why it matters.",
-      tech: ["TypeScript", "Next.js", "PostgreSQL"],
-      stars: 42,
-      link: "https://github.com/janedeveloper/example-project",
-    },
-    {
-      title: "Another Project",
-      description: "A second example. Keep each description tight — two lines max reads best.",
-      tech: ["Go", "Redis"],
-      link: "https://github.com/janedeveloper/another-project",
-    },
-    {
-      title: "Paused Experiment",
-      description: "A project you started but haven't touched in a while — mark it with a status.",
-      tech: ["Rust"],
-      status: "Paused",
-      link: "https://github.com/janedeveloper/experiment",
-    },
-  ],
-
-  client: [
-    {
-      title: "Client Work Sample",
-      description: "Replace with a short, neutral description of client work you want to show off.",
-      tech: ["React", "TailwindCSS"],
-      link: "https://example.com",
-    },
-  ],
-}
-
-/** Résumé-only condensed project highlights (short names + long descriptions). */
-export interface ResumeProjectItem {
   name: string
   desc: string
+  tech: string[]
+  achievements: string[]
+  github?: string
+  live?: string
+  status?: string
+  stars?: number
 }
 
-export const resumeProjects: ResumeProjectItem[] = [
+export const projects: ProjectItem[] = [
   {
-    name: "Example Project",
-    desc: "Slightly longer description suitable for a résumé — focus on outcomes, scale, and the specific technologies involved.",
+    name: "VaultBridge",
+    desc: "A full-stack file migration platform for server-side transfers across Google Drive, Gmail Attachments, and Google Cloud Storage.",
+    tech: ["React", "TypeScript", "Node.js", "Express", "PostgreSQL", "Prisma ORM", "Docker", "Terraform", "AWS"],
+    achievements: [
+      "Built a full-stack file migration platform for server-side transfers across Google Drive, Gmail Attachments, and Google Cloud Storage; secured with Google OAuth 2.0 and AES-256 encrypted refresh tokens.",
+      "Engineered a concurrent file streaming engine with cron-based auto-retry; provisioned AWS infrastructure via Terraform — frontend on S3 (static), backend on ECS via ECR (containerised).",
+      "Configured CI/CD pipelines using GitHub Actions for linting (ESLint), formatting (Prettier), automated tests, and deployment workflows for both frontend and backend.",
+    ],
+    live: "https://vaultbridge-eight.vercel.app/",
+    github: "https://github.com/shiven16/vaultbridge",
   },
   {
-    name: "Another Project",
-    desc: "Second résumé-worthy project. Two lines is plenty.",
-  },
+    name: "EduChain",
+    desc: "A decentralized peer-to-peer academic credential verification system enabling universities to issue cryptographically signed certificates.",
+    tech: ["Node.js", "Express.js", "REST API", "libp2p", "Docker Compose", "SHA-256", "ECDSA"],
+    achievements: [
+      "Developed EduChain, a decentralized peer-to-peer academic credential verification system enabling universities to issue cryptographically signed certificates.",
+      "Implemented ECDSA digital signature generation and SHA-256 hashing for tamper-proof PDF certificate issuance and verification.",
+      "Built decentralized ledger storage across 13 Docker-based nodes (university, employer, and relay) with fault-tolerant replication using libp2p networking.",
+      "Exposed a REST API (/issue, /verify, /stats) and built a real-time network visualization dashboard showing live node status.",
+    ],
+    github: "https://github.com/shiven16/Educhain",
+  }
 ]

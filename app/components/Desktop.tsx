@@ -9,19 +9,17 @@ import Dock from "./Dock"
 import GitHubHeatmap from "./GitHubHeatmap"
 import NowPlaying from "./NowPlaying"
 import StatusWidget from "./widgets/StatusWidget"
-import QuoteWidget from "./widgets/QuoteWidget"
-import LinksWidget from "./widgets/LinksWidget"
+
 import CalendarWidget from "./widgets/CalendarWidget"
 import VisitorWidget from "./widgets/VisitorWidget"
 import ThemeWidget from "./widgets/ThemeWidget"
 import { ContextMenu, MenuItem } from "./ContextMenu"
 import { siteConfig } from "@/config/siteConfig"
 import { windows, type WindowId } from "@/config/windows"
-import type { PostMeta } from "@/lib/posts"
 
 const KONAMI = ["ArrowUp","ArrowUp","ArrowDown","ArrowDown","ArrowLeft","ArrowRight","ArrowLeft","ArrowRight","b","a"]
 
-export default function Desktop({ posts }: { posts: PostMeta[] }) {
+export default function Desktop() {
   const [isMobile, setIsMobile] = useState<boolean | null>(null)
   const [openWindows, setOpenWindows] = useState<WindowId[]>(["about"])
   const [windowOrder, setWindowOrder] = useState<WindowId[]>(["about"])
@@ -97,7 +95,7 @@ export default function Desktop({ posts }: { posts: PostMeta[] }) {
   ]
 
   if (isMobile === null) return null
-  if (isMobile) return <MobileLayout posts={posts} />
+  if (isMobile) return <MobileLayout />
 
   const focusedTitle = focusedWindow ? windows.find((w) => w.id === focusedWindow)?.title ?? null : null
 
@@ -118,8 +116,8 @@ export default function Desktop({ posts }: { posts: PostMeta[] }) {
       {/* Window layer — every window is driven by the /config/windows.ts registry. */}
       {windows.map((win) => {
         const Section = win.component
-        // Blogs is the only window that needs extra props (server-fetched post list).
-        const extraProps = win.id === "blogs" ? { posts } : {}
+        // Extra props can be passed here if needed in the future
+        const extraProps = {}
         // Terminal needs open/close callbacks so its `open` and `exit` commands work.
         const terminalProps = win.id === "terminal"
           ? { onOpen: toggleWindow, onClose: () => closeWindow("terminal") }
@@ -128,7 +126,7 @@ export default function Desktop({ posts }: { posts: PostMeta[] }) {
           <MacWindow
             key={win.id}
             windowId={win.id}
-            title={win.id === "resume" ? `Résumé — ${siteConfig.personal.fullName}` : win.title}
+            title={win.id === "resume" ? `Resume — ${siteConfig.personal.fullName}` : win.title}
             isOpen={openWindows.includes(win.id)}
             isFocused={focusedWindow === win.id}
             onClose={() => closeWindow(win.id)}
@@ -145,9 +143,7 @@ export default function Desktop({ posts }: { posts: PostMeta[] }) {
       })}
 
       {/* Desktop widgets */}
-      <QuoteWidget />
       <StatusWidget />
-      <LinksWidget />
       <CalendarWidget />
       <VisitorWidget />
       <ThemeWidget />
@@ -269,3 +265,4 @@ export default function Desktop({ posts }: { posts: PostMeta[] }) {
     </div>
   )
 }
+

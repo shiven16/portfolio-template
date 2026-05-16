@@ -4,25 +4,22 @@ import { useEffect, useState } from "react"
 import Hero from "./Hero"
 import Experience from "./sections/Experience"
 import Projects from "./sections/Projects"
-import Blogs from "./sections/Blogs"
 import Contact from "./sections/Contact"
 import Resume from "./sections/Resume"
 // Initials + footer name come from /config/siteConfig.ts.
 import { siteConfig } from "@/config/siteConfig"
-import type { PostMeta } from "@/lib/posts"
 
 const NAV = [
   { id: "about",      label: "About" },
   { id: "experience", label: "Experience" },
   { id: "projects",   label: "Projects" },
-  { id: "writing",    label: "Writing" },
   { id: "contact",    label: "Contact" },
-  { id: "resume",     label: "Résumé" },
+  { id: "resume",     label: "Resume" },
 ]
 
 const BORDER = "1px solid rgba(255,255,255,0.07)"
 
-export default function MobileLayout({ posts }: { posts: PostMeta[] }) {
+export default function MobileLayout() {
   const [time, setTime] = useState("")
   const [activeId, setActiveId] = useState("about")
 
@@ -106,10 +103,6 @@ export default function MobileLayout({ posts }: { posts: PostMeta[] }) {
 
       <section id="projects" style={{ borderBottom: BORDER }}>
         <Projects compact />
-      </section>
-
-      <section id="writing" style={{ borderBottom: BORDER }}>
-        <Blogs compact posts={posts} />
       </section>
 
       <section id="contact" style={{ borderBottom: BORDER }}>
